@@ -311,15 +311,33 @@
             }
         }
     </style>
-    
-		<script id="hotmart_launcher_script">
-			(function(l,a,u,n,c,h,e,r){l['HotmartLauncherObject']=c;l[c]=l[c]||function(){
-			(l[c].q=l[c].q||[]).push(arguments)},l[c].l=1*new Date();h=a.createElement(u),
-			e=a.getElementsByTagName(u)[0];h.async=1;h.src=n;e.parentNode.insertBefore(h,e)
-			})(window,document,'script','//launcher.hotmart.com/launcher.js','hot');
+    <script>
+        window.onload = function() {
+            var links = document.getElementsByTagName("a");
+            for (var i = 0, n = links.length; i < n; i++) {
+                var href = links[i].href.trim() +
+                    (links[i].href.indexOf("?") > 0 ? '&' : '?') +
+                    document.location.search.replace('?', '').toString();
+                links[i].href = href;
+            }
+        }
+    </script>
 
-			hot('account','a06de335-3d0f-3a0b-94e2-883e8e62e4d1');
-		</script>
+    <script id="hotmart_launcher_script">
+        (function(l, a, u, n, c, h, e, r) {
+            l['HotmartLauncherObject'] = c;
+            l[c] = l[c] || function() {
+                (l[c].q = l[c].q || []).push(arguments)
+            }, l[c].l = 1 * new Date();
+            h = a.createElement(u),
+                e = a.getElementsByTagName(u)[0];
+            h.async = 1;
+            h.src = n;
+            e.parentNode.insertBefore(h, e)
+        })(window, document, 'script', '//launcher.hotmart.com/launcher.js', 'hot');
+
+        hot('account', 'a06de335-3d0f-3a0b-94e2-883e8e62e4d1');
+    </script>
 
 </head>
 
@@ -707,17 +725,6 @@
                     </div>
                 </div>
             </div>
-            <script type="rocketlazyloadscript">
-
-                // lista de plataformas var platforms = ["hotmart", "kiwify"]; // obter a query string atual var queryString = window.location.search; // extrair todos os parâmetros de utm da query string var utmParams = {}; queryString.substr(1).split("&").forEach(function(item)
-                { var param = item.split("="); if (param[0].startsWith("utm_")) { utmParams[param[0]] = param[1]; } }); // verificar se não há parâmetros de utm na query string e adicionar utm_source e utm_medium usando o referenciador if (Object.keys(utmParams).length
-                === 0) { var referrer = document.referrer; if (referrer) { var domain = new URL(referrer).hostname; utmParams["utm_source"] = domain; utmParams["utm_medium"] = "Referencia"; } } // criar uma string com todas as utms separadas por "|" var
-                utmString = Object.keys(utmParams) .map(function(key) { return key.substr(4) + "=" + utmParams[key]; }) .join("|"); // encontrar todos os links que contenham uma das plataformas na lista var links = document.getElementsByTagName("a");
-                for (var i = 0; i
-                < links.length; i++) { for (var j=0 ; j < platforms.length; j++) { if (links[i].href.indexOf(platforms[j]) !==- 1) { // adicionar as utms da query string ao href do link var linkUrl=n ew URL(links[i].href); var oldHref=l inks[i].href; for (var param in
-                    utmParams) { linkUrl.searchParams.set(param, utmParams[param]); } // adicionar a string de utms separadas por "|" ao href linkUrl.searchParams.set( "sck", utmString); // decodificar o link antes de adicioná-lo ao href links[i].href=d ecodeURI(linkUrl.toString());
-                // exibir as URLs antigas e atualizadas no console console.log( "Antes: " + oldHref); console.log( "Depois: " + links[i].href); // adicionar o "?" ou "&" dependendo se já existe ou não uma query string if (links[i].href.indexOf( "?")===-
-                    1) { links[i].href +="?" ; } else { links[i].href +="&" ; } break; } } } console.groupEnd(); </script>
 
 
 </body>
